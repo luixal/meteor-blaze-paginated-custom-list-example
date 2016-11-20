@@ -1,0 +1,14 @@
+<head>
+  <title>books</title>
+</head>
+
+<body>
+  {{> booksList}}
+</body>
+
+<template name="booksList">
+  <div class="col-md-4 col-md-offset-1">
+    <h1>Books list:</h1>
+    {{> paginatedCustomList options=options}}
+  </div>
+</template>
