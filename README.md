@@ -1,5 +1,5 @@
 # meteor-blaze-paginated-custom-list-examples
-This repo contains three basic examples using [`luixal:blaze-paginated-custom-list-example`](https://github.com/luixal/meteor-blaze-paginated-custom-list) meteor package for rendering item lists.
+This repo contains three basic examples using [`luixal:blaze-paginated-custom-list`](https://github.com/luixal/meteor-blaze-paginated-custom-list) meteor package for rendering item lists.
 
 For running each of them you just have to go into de example directory, in example:
 
