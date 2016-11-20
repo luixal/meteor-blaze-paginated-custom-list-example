@@ -137,3 +137,51 @@ and this options:
 looks like this:
 
 ![example_3_screenshot](https://github.com/luixal/meteor-blaze-paginated-custom-list-example/raw/master/screenshots/example_3.png)
+
+#### Example 4
+Using bootswatch's theme [Sandstone](http://bootswatch.com/sandstone/), the same item template, but a different mains template to show some _magic_ controlling pagination:
+
+```html
+<template name="booksList">
+  <div class="col-md-4 col-md-offset-1">
+    <h1>Books list: {{showingPerPage}}/{{totalItems}}</h1>
+    {{> paginatedCustomList options=options}}
+    {{#if allShown}}
+      <a href="#" class=" col-md-12 btn disabled">No more books</a>
+    {{else}}
+      <a href="#" id="showMore" class=" col-md-12 btn btn-primary">show more books</a>
+    {{/if}}
+  </div>
+</template>
+```
+
+these are the interesting helpers:
+
+```javascript
+'showingPerPage': function() {
+  if (PaginatedCustomList && PaginatedCustomList.getPagination('books')) return PaginatedCustomList.getPagination('books').perPage();
+},
+
+'totalItems': function() {
+  if (PaginatedCustomList && PaginatedCustomList.getPagination('books')) return PaginatedCustomList.getPagination('books').totalItems();
+},
+
+'allShown': function() {
+  let pagination = PaginatedCustomList.getPagination('books');
+  if (pagination) return (pagination.perPage() >= pagination.totalItems());
+}
+```
+
+and this is the button event handler:
+
+```javascript
+'click #showMore': function() {
+  let pagination = PaginatedCustomList.getPagination('books');
+  pagination.perPage(pagination.perPage() + showMoreIncrement);
+}
+```
+
+the example looks like this (before and after pressing the _show more_ button):
+
+![example_4_screenshot](https://github.com/luixal/meteor-blaze-paginated-custom-list-example/raw/master/screenshots/example_4.png)
+![example_4_1_screenshot](https://github.com/luixal/meteor-blaze-paginated-custom-list-example/raw/master/screenshots/example_4_1.png)
